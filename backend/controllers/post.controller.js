@@ -97,12 +97,12 @@ export const likePost = async (req, res) => {
         await post.updateOne({ $addToSet: { likes: main } });
         await post.save();
 
-        // implement socket io for real time notification
+    
         const user = await User.findById(main).select('username profilePicture');
          
         const postOwnerId = post.author.toString();
         if(postOwnerId !== main){
-            // emit a notification event
+            
             const notification = {
                 type:'like',
                 userId:main,

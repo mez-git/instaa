@@ -8,10 +8,8 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors:{
-        origin: "http://localhost:5173",
-        methods:['GET','POST'],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
+        origin:process.env.URL || "http://localhost:5173",
+        methods:['GET','POST']
     }
 })
 
@@ -21,10 +19,12 @@ export const getReceiverSocketId = (receiverId) => userSocketMap[receiverId];
 
 io.on('connection', (socket)=>{
     const userId = socket.handshake.query.userId;
+    console.log("User connected:", userId);
+    console.log("Received userId from client:", userId); 
     if(userId){
         userSocketMap[userId] = socket.id;
     }
-    console.log("User ID from query:", userId);
+
     io.emit('getOnlineUsers', Object.keys(userSocketMap));
 
     socket.on('disconnect',()=>{

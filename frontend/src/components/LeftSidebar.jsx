@@ -21,7 +21,7 @@ const LeftSidebar = () => {
 
     const logoutHandler = async () => {
         try {
-            const res = await axios.get('http://localhost:8001/api/v1/user/logout', { withCredentials: true });
+            const res = await axios.get('http://localhost:8000/api/v1/user/logout', { withCredentials: true });
             if (res.data.success) {
                 dispatch(setAuthUser(null));
                 dispatch(setSelectedPost(null));
@@ -50,8 +50,8 @@ const LeftSidebar = () => {
 
     const sidebarItems = [
         { icon: <Home />, text: "Home" },
-        { icon: <Search />, text: "Search" },
-        { icon: <TrendingUp />, text: "Explore" },
+        
+        
         { icon: <MessageCircle />, text: "Messages" },
         { icon: <Heart />, text: "Notifications" },
         { icon: <PlusSquare />, text: "Create" },

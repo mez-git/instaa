@@ -22,11 +22,11 @@ const Login = () => {
         setInput({ ...input, [e.target.name]: e.target.value });
     }
 
-    const signupHandler = async (e) => {
+    const LoginHandler = async (e) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post('http://localhost:8001/api/v1/user/login', input, {
+            const res = await axios.post('http://localhost:8000/api/v1/user/login', input, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -56,7 +56,7 @@ const Login = () => {
     },[])
     return (
         <div className='flex items-center w-screen h-screen justify-center'>
-            <form onSubmit={signupHandler} className='shadow-lg flex flex-col gap-5 p-8'>
+            <form onSubmit={LoginHandler} className='shadow-lg flex flex-col gap-5 p-8'>
                 <div className='my-4'>
                     <h1 className='text-center font-bold text-xl'>INSTA</h1>
                     <p className='text-sm text-center'>Login to see photos & videos from your friends</p>
